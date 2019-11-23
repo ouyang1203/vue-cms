@@ -34,7 +34,10 @@
 </script>
 <style lang="scss" scoped>
 .app-container{
+    //避免避免route-view区域第一条数据被顶部Header区域遮挡
     padding-top: 40px;
+    //避免route-view区域最后一条数据被底部Tabber遮挡
+    padding-bottom: 50px;
     overflow-x: hidden;
 }
 /**设置模块切换动画效果*/
