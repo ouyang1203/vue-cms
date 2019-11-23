@@ -29,7 +29,6 @@
     </div>
 </template>
 <script>
-import { Toast} from 'mint-ui';
 //导入comment评论子组件
 import comment from '../subComponents/comment.vue';
 var newsDetail = {
