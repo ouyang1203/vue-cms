@@ -28,6 +28,8 @@ import moment from 'moment';
 import app from './App.vue';
 //导入项目的route.js路由模块
 import router from './router.js';
+//导入全局变量文件
+import global from './Common.vue';
 
 
 Vue.use(VueRouter);
@@ -38,6 +40,7 @@ Vue.http.options.crossOrigin = true;
 Vue.http.options.emulateHTTP = true;
 /**设置全局访问根节点 */
 Vue.http.options.root='http://localhost:8080/';
+Vue.prototype.GLOBAL = global
 
 //时间格式化filter
 Vue.filter('timeFormat',function(data,pattern){

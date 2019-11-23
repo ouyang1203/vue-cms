@@ -41,18 +41,10 @@ export default {
                     //获取后端接口返回的新闻数据
                     this.newsList = body.list;
                 }else{
-                    Toast({
-                        message:  body.statusText,
-                        position: 'top',
-                        duration: 3000
-                    });
+                    this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
             },function(error){
-                Toast({
-                        message:  '网络异常,目前展示的为静态页面,请联系管理员检查接口是否正常。。',
-                        position: 'top',
-                        duration: 3000
-                });
+                this.GLOBAL.error(this.GLOBAL.overTimeErrorMessage,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
             });
         }
     }

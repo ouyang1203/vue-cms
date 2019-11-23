@@ -59,18 +59,10 @@ export default {
                 if(body.status===0){
                     this.newsDetail = body.message;
                 }else{
-                    Toast({
-                        message:  body.statusText,
-                        position: 'top',
-                        duration: 3000
-                    });
+                    this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
             },function(error){
-                Toast({
-                        message:  '网络异常,目前展示的为静态页面,请联系管理员检查接口是否正常。。',
-                        position: 'top',
-                        duration: 3000
-                });
+                this.GLOBAL.error(this.GLOBAL.overTimeErrorMessage,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
             });
         }
     },

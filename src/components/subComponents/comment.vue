@@ -43,12 +43,10 @@ export default {
                 if(body.status===0){
                     this.commentList = body.list;
                 }else{
-                    Toast({
-                        message:  body.statusText,
-                        position: 'top',
-                        duration: 3000
-                    });
+                    this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
+            },function(error){
+                this.GLOBAL.error(this.GLOBAL.overTimeErrorMessage,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
             });
         },
         addComment(){
