@@ -65,6 +65,12 @@ export default {
                         duration: 3000
                     });
                 }
+            },function(error){
+                Toast({
+                        message:  '网络异常,目前展示的为静态页面,请联系管理员检查接口是否正常。。',
+                        position: 'top',
+                        duration: 3000
+                });
             });
         }
     },
