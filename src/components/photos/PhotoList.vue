@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="photo-list-container">
         <!--顶部滑动条区域-->
         <van-tabs animated v-model="categoryId" @click="tableClick">
             <van-tab v-for="item in categoryList" :key="item.imageCategoryId" :name="item.imageCategoryId" :title="item.imageCategoryName">
@@ -14,7 +14,7 @@ export default {
     data(){
         return {
             categoryList:this.GLOBAL.categoryList,
-            categoryId:1
+            categoryId:1//设置默认激活第一个分类
         }
     },
     created(){
@@ -29,7 +29,7 @@ export default {
                     //获取后端接口返回的图片的分类列表
                     this.categoryList = body.list;
                     //在最开始添加一个查询全部的分类
-                    this.categoryList.unshift({"imageCategoryCode":"all","imageCategoryId":0,"imageCategoryName":"全部"});
+                    this.categoryList.unshift({"imageCategoryCode":"all","imageCategoryId":1,"imageCategoryName":"全部"});
                 }else{
                     this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
@@ -39,11 +39,16 @@ export default {
         },
         tableClick(){
             //获取点击的模块ID
-            console.log(this.categoryId);
+            //console.log(this.categoryId);
         }
     }
 }
 </script>
 <style lang="scss">
+.photo-list-container{
+    .van-tab--active{
+        color: #007aff;
+    }
+}
 
 </style>
