@@ -10,34 +10,48 @@
                     第{{i+1}}楼&nbsp;&nbsp;用户：{{item.commentUser}}&nbsp;&nbsp;发表时间：{{item.commentTime|timeFormat('')}}
                 </div>
                 <div class="cmt-content">
-                    {{item.commentMessage}}
+                    {{item.commentMessage==='undefined'?commentContentUndefinedMessage:item.commentMessage}}
                 </div>
             </div>
         </div>
-        <mt-button type="danger" size="large" plain>加载更多</mt-button>
+        <mt-button type="danger" size="large" plain @click="getMore" style="">
+            {{pageHaveNextFlag?loadMoreCommentText:noMoreDataText}}
+        </mt-button>
     </div>
 </template>
 <script>
 export default {
     data(){
         return {
+            commentContentUndefinedMessage:this.GLOBAL.commentContentUndefinedMessage,
             commentMessage:'',//评论内容
             pageIndex:1,//默认展示第一页评论数据
-            pageSize:10,//默认一页展示10条数据
+            pageSize:this.GLOBAL.globalPageSize,//全局分页大小设置
+            pageHaveNextFlag:true,//控制加载评论按钮是否能再次点击
+            loadMoreCommentText:this.GLOBAL.loadMoreCommentText,//加载更多数据的按钮文字
+            noMoreDataText:this.GLOBAL.noMoreDataText,//没有更多数据可供加载时将页面按钮文字替换掉
             commentList:this.GLOBAL.commentList//避免后端接口无数据返回页面上空白
         }
     },
     created(){
-        this.initComments();
+        this.initComments('init');
     },
     methods:{
-        initComments(){
+        initComments(way){
             //this.id是父组件传递过来的
             var json = {commentModuleId:this.id,pageIndex:this.pageIndex,pageSize:this.pageSize}
             this.$http.post(this.GLOBAL.commentFindCommentsPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
-                    this.commentList = body.list;
+                    if(way==='init'){
+                        this.commentList = body.list;
+                    }else{
+                        this.commentList = this.commentList.concat(body.list);
+                    }
+                    if(this.pageIndex===body.totalPage){
+                        //当前页大小和总页数大小一致时不允许再次点击加载更多按钮
+                        this.pageHaveNextFlag = false;
+                    }
                 }else{
                     this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
@@ -58,16 +72,22 @@ export default {
             this.$http.post(this.GLOBAL.commentAddCommentPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
-                    //刷新评论列表
-                    this.initComments();
+                    //刷新评论列表,使用后端接口返回的JSON对象直接插入到列表中
+                    this.commentList.splice(0,0,body.message);
                     //清除评论文本域中的输入
                     this.commentMessage = '';
+                    this.pageHaveNextFlag = true;
                 }else{
                     this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
             },function(error){
                 this.GLOBAL.error(this.GLOBAL.overTimeErrorMessage,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
             });
+        },
+        getMore(){
+            //加载下一页的数据
+            this.pageIndex++;
+            this.initComments('load');
         }
     },
     //获取父组件传递过来的参数

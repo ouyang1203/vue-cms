@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
         <!--顶部Header区域-->
-        <mt-header fixed title="VUE项目"></mt-header>
+        <mt-header fixed :title="currentProjectHeaderTitle"></mt-header>
         <!--中间的路由route-view区域-->
         <transition>
             <router-view></router-view>
@@ -30,7 +30,13 @@
     </div>
 </template>
 <script>
-    
+    export default{
+        data(){
+            return {
+                currentProjectHeaderTitle:this.GLOBAL.currentProjectHeaderTitle
+            }
+        }
+    }
 </script>
 <style lang="scss" scoped>
 .app-container{

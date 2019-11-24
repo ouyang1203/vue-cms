@@ -24,10 +24,20 @@ function error(message,position,duration){
  * overTimeErrorMessage 全局超时提示错误信息
  * errorToastPosition 错误提示位置
  * errorToastDuration 错误提示时长
+ * commentContentUndefinedMessage 评论数据为undefined时的替换信息
+ * currentProjectHeaderTitle 设置Header中的文字
+ * globalPageSize 设置全局分页大小
+ * loadMoreCommentText 分页按钮显示文字
+ * noMoreDataText 分页到最大时按钮文字
  */
 const overTimeErrorMessage = '网络异常,目前展示的为静态页面,请联系管理员检查接口是否正常。。';
 const errorToastPosition = 'top';
 const errorToastDuration = 3000;
+const commentContentUndefinedMessage = '此用户很懒,什么都没说。。。。';
+const currentProjectHeaderTitle = 'VUE项目-全局标题';
+const globalPageSize = 10;
+const loadMoreCommentText = '加载更多';
+const noMoreDataText = "没有更多的数据可供加载";
 
 /***
  * 所有后端请求地址
@@ -72,8 +82,9 @@ const newsDetail = {
     newsViewCount:3
 };
 const commentList = [
-    {commentId:1,commentUser:'匿名用户',commentTime:'2019-11-23 17:34:23',commentMessage:'啊啊啊啊啊啊啊啊'},
-    {commentId:2,commentUser:'匿名用户',commentTime:'2019-11-23 17:36:24',commentMessage:'日照香炉生紫烟呀'}
+    //{commentId:1,commentUser:'匿名用户',commentTime:'2019-11-23 17:34:23',commentMessage:'啊啊啊啊啊啊啊啊'},
+    //{commentId:2,commentUser:'匿名用户',commentTime:'2019-11-23 17:36:24',commentMessage:'日照香炉生紫烟呀'},
+   // {commentId:3,commentUser:'匿名用户',commentTime:'2019-11-23 17:37:24',commentMessage:'undefined'}
 ];
 /***
  * 暴露出全局定义的方法和属性
@@ -91,6 +102,11 @@ export default {
     lunboList,
     newsList,
     newsDetail,
-    commentList
+    commentList,
+    commentContentUndefinedMessage,
+    currentProjectHeaderTitle,
+    globalPageSize,
+    loadMoreCommentText,
+    noMoreDataText
 }
 </script>
