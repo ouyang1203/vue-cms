@@ -14,11 +14,6 @@ import vueResource from 'vue-resource';
  */
 import { Header,Swipe, SwipeItem,Button} from 'mint-ui';
 import 'mint-ui/lib/style.css';
-Vue.component(Header.name, Header);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
-
 /**引入MUI样式 */
 import './lib/mui/css/mui.min.css';
 import './lib/mui/css/icons-extra.css';
@@ -31,9 +26,14 @@ import router from './router.js';
 //导入全局变量文件
 import global from './Common.vue';
 
-
+Vue.component(Header.name, Header);
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 Vue.use(VueRouter);
 Vue.use(vueResource);
+
+
 /**设置Vue-Router全局属性,必须要在Vue.use(vueResource);后面才行 */
 Vue.http.options.emulateJSON = false;
 Vue.http.options.crossOrigin = true;

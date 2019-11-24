@@ -24,10 +24,7 @@ export default {
             commentMessage:'',//评论内容
             pageIndex:1,//默认展示第一页评论数据
             pageSize:10,//默认一页展示10条数据
-            commentList:[//避免后端接口无数据返回页面上空白
-                {commentId:1,commentUser:'匿名用户',commentTime:'2019-11-23 17:34:23',commentMessage:'啊啊啊啊啊啊啊啊'},
-                {commentId:2,commentUser:'匿名用户',commentTime:'2019-11-23 17:36:24',commentMessage:'日照香炉生紫烟呀'}
-            ]
+            commentList:this.GLOBAL.commentList//避免后端接口无数据返回页面上空白
         }
     },
     created(){
@@ -37,7 +34,7 @@ export default {
         initComments(){
             //this.id是父组件传递过来的
             var json = {commentModuleId:this.id,pageIndex:this.pageIndex,pageSize:this.pageSize}
-            this.$http.post("comment/findComments",json).then(function(result){
+            this.$http.post(this.GLOBAL.commentFindCommentsPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
                     this.commentList = body.list;
@@ -58,7 +55,7 @@ export default {
                 commentLevel:'3',
                 commentIsWork:'Y'
             };
-            this.$http.post("comment/addComment",json).then(function(result){
+            this.$http.post(this.GLOBAL.commentAddCommentPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
                     //刷新评论列表

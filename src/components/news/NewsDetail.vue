@@ -31,18 +31,11 @@
 <script>
 //导入comment评论子组件
 import comment from '../subComponents/comment.vue';
-var newsDetail = {
-    newsId:1,
-    newsImagePath:"http://localhost:3000/images/shuijiao.jpg",
-    newsTitle:"幸福",
-    newsContent:"能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？",
-    newsCreatedDate:'2019-11-23 11:45:00',
-    newsViewCount:3
-};
+
 export default {
     data(){
         return {
-            newsDetail,
+            newsDetail:this.GLOBAL.newsDetail,
             module:'news',//指定当前业务模块
             //将URL中传递的ID挂载到data上面，方便后续调用
             id: this.$route.params.id
@@ -53,7 +46,7 @@ export default {
     },methods: {
         initNewInfo(){
             var json = {"newsId":this.id};
-            this.$http.post("news/getNewsInfo",json).then(function(result){
+            this.$http.post(this.GLOBAL.newsDetailGetNewsInfoPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
                     this.newsDetail = body.message;

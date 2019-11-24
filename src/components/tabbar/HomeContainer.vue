@@ -53,10 +53,7 @@ export default {
     data(){
         return {
             //用于保存后端接口返回的轮播图片列表信息(默认提供两张vscode发布的图片,避免后端服务未启动时轮播图显示空白)
-            lunboList:[
-                {imageId:1,imagePath:"http://localhost:3000/images/1.jpg",imageTitle:"轮播图-1.jpg"},
-                {imageId:1,imagePath:"http://localhost:3000/images/beach.jpg",imageTitle:"轮播图-beach.jpg"}
-            ]
+            lunboList:this.GLOBAL.lunboList
         }
     },
     created(){
@@ -64,7 +61,7 @@ export default {
     },
     methods:{
         getLunbo(){//获取轮播图数据的方法
-            this.$http.get('image/getLunBo').then(function(result){
+            this.$http.get(this.GLOBAL.homePageLunBoPath).then(function(result){
                 var body = result.body;
                 if(body.status===0){
                     //获取后端接口返回的轮播图数据

@@ -21,15 +21,76 @@ function error(message,position,duration){
 }
 /***
  * 全局属性
+ * overTimeErrorMessage 全局超时提示错误信息
+ * errorToastPosition 错误提示位置
+ * errorToastDuration 错误提示时长
  */
 const overTimeErrorMessage = '网络异常,目前展示的为静态页面,请联系管理员检查接口是否正常。。';
 const errorToastPosition = 'top';
 const errorToastDuration = 3000;
 
+/***
+ * 所有后端请求地址
+ * homePageLunBoPath为首页轮播图后台请求地址
+ * newsListGetAllNewsPath为新闻列表后台请求地址
+ * newsDetailGetNewsInfoPath新闻详情后台请求地址
+ * commentFindCommentsPath新闻对应评论列表获取地址
+ * commentAddCommentPath发送评论对应后台地址
+ */
+const homePageLunBoPath = 'image/getLunBo';
+const newsListGetAllNewsPath = 'news/getAllNews';
+const newsDetailGetNewsInfoPath = "news/getNewsInfo";
+const commentFindCommentsPath = "comment/findComments";
+const commentAddCommentPath = "comment/addComment";
+
+/**
+ * 当后端接口地址无法请求时,使用全局配置的静态图片路径,避免页面中元素空白
+ * 注意：所有后端接口返回格式规定为JSON字符串,{status:0,statusText:'',list/message:object}
+ * status=0代表接口请求成功，其他状态均为失败；
+ * statusText代表错误提示信息；
+ * list/message如果当前页面是列表则用list返回后端查询的List数据，如果是明细则用message返回查询对象，具体参考下面说明：
+ * lunboList轮播图列表返回格式
+ * newsList新闻列表数据返回格式
+ * newsDetail新闻详情数据返回格式
+ * commentList评论列表数据返回格式
+ */
+const lunboList = [
+    {imageId:1,imagePath:"images/1.jpg",imageTitle:"轮播图-1.jpg"},
+    {imageId:1,imagePath:"images/beach.jpg",imageTitle:"轮播图-beach.jpg"}
+];
+const newsList = [
+    {newsId:1,newsImagePath:"images/shuijiao.58d54e6d.jpg",newsTitle:"幸福",newsCreatedDate:'2019-11-23 11:45:00',newsViewCount:3},
+    {newsId:2,newsImagePath:"images/muwu.7aea0e5f.jpg",newsTitle:"木屋",newsCreatedDate:'2019-11-23 11:45:01',newsViewCount:5},
+    {newsId:3,newsImagePath:"images/cbd.2f2a3524.jpg",newsTitle:"CBD",newsCreatedDate:'2019-11-23 11:46:00',newsViewCount:7}
+];
+const newsDetail = {
+    newsId:1,
+    newsImagePath:"images/shuijiao.58d54e6d.jpg",
+    newsTitle:"幸福",
+    newsContent:"能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？",
+    newsCreatedDate:'2019-11-23 11:45:00',
+    newsViewCount:3
+};
+const commentList = [
+    {commentId:1,commentUser:'匿名用户',commentTime:'2019-11-23 17:34:23',commentMessage:'啊啊啊啊啊啊啊啊'},
+    {commentId:2,commentUser:'匿名用户',commentTime:'2019-11-23 17:36:24',commentMessage:'日照香炉生紫烟呀'}
+];
+/***
+ * 暴露出全局定义的方法和属性
+ */
 export default {
     error,
     overTimeErrorMessage,
     errorToastPosition,
-    errorToastDuration
+    errorToastDuration,
+    homePageLunBoPath,
+    newsListGetAllNewsPath,
+    newsDetailGetNewsInfoPath,
+    commentFindCommentsPath,
+    commentAddCommentPath,
+    lunboList,
+    newsList,
+    newsDetail,
+    commentList
 }
 </script>
