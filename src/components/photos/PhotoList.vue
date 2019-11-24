@@ -26,8 +26,10 @@ export default {
             this.$http.get(this.GLOBAL.findAllImageCategoryPath).then(function(result){
                 var body = result.body;
                 if(body.status===0){
-                    //获取后端接口返回的轮播图数据
+                    //获取后端接口返回的图片的分类列表
                     this.categoryList = body.list;
+                    //在最开始添加一个查询全部的分类
+                    this.categoryList.unshift({"imageCategoryCode":"all","imageCategoryId":0,"imageCategoryName":"全部"});
                 }else{
                     this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
                 }
