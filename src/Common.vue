@@ -38,6 +38,7 @@ const currentProjectHeaderTitle = 'VUE项目-全局标题';
 const globalPageSize = 10;
 const loadMoreCommentText = '加载更多';
 const noMoreDataText = "没有更多的数据可供加载";
+const inputCanNotEmpty = '输入内容不能为空';
 
 /***
  * 所有后端请求地址
@@ -52,6 +53,7 @@ const newsListGetAllNewsPath = 'news/getAllNews';
 const newsDetailGetNewsInfoPath = "news/getNewsInfo";
 const commentFindCommentsPath = "comment/findComments";
 const commentAddCommentPath = "comment/addComment";
+const findAllImageCategoryPath = "imageCategory/findAllImageCategory";
 
 /**
  * 当后端接口地址无法请求时,使用全局配置的静态图片路径,避免页面中元素空白
@@ -63,28 +65,37 @@ const commentAddCommentPath = "comment/addComment";
  * newsList新闻列表数据返回格式
  * newsDetail新闻详情数据返回格式
  * commentList评论列表数据返回格式
+ * categoryList图片分享的类别列表数据返回格式
  */
 const lunboList = [
     {imageId:1,imagePath:"images/1.jpg",imageTitle:"轮播图-1.jpg"},
     {imageId:1,imagePath:"images/beach.jpg",imageTitle:"轮播图-beach.jpg"}
 ];
 const newsList = [
-    {newsId:1,newsImagePath:"images/shuijiao.58d54e6d.jpg",newsTitle:"幸福",newsCreatedDate:'2019-11-23 11:45:00',newsViewCount:3},
-    {newsId:2,newsImagePath:"images/muwu.7aea0e5f.jpg",newsTitle:"木屋",newsCreatedDate:'2019-11-23 11:45:01',newsViewCount:5},
-    {newsId:3,newsImagePath:"images/cbd.2f2a3524.jpg",newsTitle:"CBD",newsCreatedDate:'2019-11-23 11:46:00',newsViewCount:7}
+    {newsId:1,newsImagePath:"images/shuijiao.jpg",newsTitle:"幸福",newsCreatedDate:'2019-11-23 11:45:00',newsViewCount:3},
+    {newsId:2,newsImagePath:"images/muwu.jpg",newsTitle:"木屋",newsCreatedDate:'2019-11-23 11:45:01',newsViewCount:5},
+    {newsId:3,newsImagePath:"images/cbd.jpg",newsTitle:"CBD",newsCreatedDate:'2019-11-23 11:46:00',newsViewCount:7}
 ];
 const newsDetail = {
     newsId:1,
-    newsImagePath:"images/shuijiao.58d54e6d.jpg",
+    newsImagePath:"images/shuijiao.jpg",
     newsTitle:"幸福",
     newsContent:"能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？",
     newsCreatedDate:'2019-11-23 11:45:00',
     newsViewCount:3
 };
 const commentList = [
-    //{commentId:1,commentUser:'匿名用户',commentTime:'2019-11-23 17:34:23',commentMessage:'啊啊啊啊啊啊啊啊'},
-    //{commentId:2,commentUser:'匿名用户',commentTime:'2019-11-23 17:36:24',commentMessage:'日照香炉生紫烟呀'},
-   // {commentId:3,commentUser:'匿名用户',commentTime:'2019-11-23 17:37:24',commentMessage:'undefined'}
+    {commentId:1,commentUser:'匿名用户',commentTime:'2019-11-23 17:34:23',commentMessage:'啊啊啊啊啊啊啊啊'},
+    {commentId:2,commentUser:'匿名用户',commentTime:'2019-11-23 17:36:24',commentMessage:'日照香炉生紫烟呀'},
+    {commentId:3,commentUser:'匿名用户',commentTime:'2019-11-23 17:37:24',commentMessage:'undefined'}
+];
+const categoryList = [
+    {"imageCategoryCode":"recommend","imageCategoryId":1,"imageCategoryName":"推荐1"},
+    {"imageCategoryCode":"hotspot","imageCategoryId":2,"imageCategoryName":"热点1"},
+    {"imageCategoryCode":"beijng","imageCategoryId":3,"imageCategoryName":"北京1"},
+    {"imageCategoryCode":"society","imageCategoryId":4,"imageCategoryName":"社会1"},
+    {"imageCategoryCode":"amusement","imageCategoryId":5,"imageCategoryName":"娱乐1"},
+    {"imageCategoryCode":"technology","imageCategoryId":6,"imageCategoryName":"科技1"}
 ];
 /***
  * 暴露出全局定义的方法和属性
@@ -107,6 +118,9 @@ export default {
     currentProjectHeaderTitle,
     globalPageSize,
     loadMoreCommentText,
-    noMoreDataText
+    noMoreDataText,
+    inputCanNotEmpty,
+    categoryList,
+    findAllImageCategoryPath
 }
 </script>

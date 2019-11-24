@@ -60,10 +60,14 @@ export default {
             });
         },
         addComment(){
+            var msg = this.commentMessage.trim();
+            if(msg===''){
+                return this.GLOBAL.error(this.GLOBAL.inputCanNotEmpty,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
+            }
             //发送评论(this.module和this.id是父组件传递过来的参数)
             var json = {
                 commentUserId:2,
-                commentMessage:this.commentMessage,
+                commentMessage:msg,
                 commentModule:this.module,
                 commentModuleId:this.id,
                 commentLevel:'3',

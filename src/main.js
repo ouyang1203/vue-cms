@@ -25,6 +25,11 @@ import app from './App.vue';
 import router from './router.js';
 //导入全局变量文件
 import global from './Common.vue';
+//导入vant组件替换MUI的滑动组件
+import { Tab, Tabs } from 'vant';
+//导入vant组件样式
+import 'vant/lib/tab/style';
+import 'vant/lib/tabs/style';
 
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
@@ -32,14 +37,19 @@ Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
 Vue.use(VueRouter);
 Vue.use(vueResource);
+Vue.use(Tab).use(Tabs);
 
 
-/**设置Vue-Router全局属性,必须要在Vue.use(vueResource);后面才行 */
+/**设置Vue-Router全局属性,必须要在Vue.use(vueResource);后面才行*/
 Vue.http.options.emulateJSON = false;
 Vue.http.options.crossOrigin = true;
 Vue.http.options.emulateHTTP = true;
-/**设置全局访问根节点 */
-Vue.http.options.root='http://localhost:8080/';
+/**
+ * 设置全局访问根节点
+ * 本地开发时可以使用http://localhost:8080
+ * 局域网内手机访问需要使用nginx代理一下修改为http://192.168.1.3/
+ *  */
+Vue.http.options.root='http://localhost:8080';
 Vue.prototype.GLOBAL = global
 
 //时间格式化filter
