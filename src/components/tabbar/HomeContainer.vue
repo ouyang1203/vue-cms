@@ -61,7 +61,8 @@ export default {
     },
     methods:{
         getLunbo(){//获取轮播图数据的方法
-            this.$http.get(this.GLOBAL.homePageLunBoPath).then(function(result){
+            var json = {imageCategoryId:2};
+            this.$http.post(this.GLOBAL.homePageLunBoPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
                     //获取后端接口返回的轮播图数据

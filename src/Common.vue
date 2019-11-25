@@ -47,13 +47,16 @@ const inputCanNotEmpty = '输入内容不能为空';
  * newsDetailGetNewsInfoPath新闻详情后台请求地址
  * commentFindCommentsPath新闻对应评论列表获取地址
  * commentAddCommentPath发送评论对应后台地址
+ * findAllImageCategoryPath查询图片分类列表后台地址
+ * findAllImagesByCategoryPath 查询分类下所有图片列表后台地址
  */
-const homePageLunBoPath = 'image/getLunBo';
+const homePageLunBoPath = 'image/postImageListByCategoryId';
 const newsListGetAllNewsPath = 'news/getAllNews';
 const newsDetailGetNewsInfoPath = "news/getNewsInfo";
 const commentFindCommentsPath = "comment/findComments";
 const commentAddCommentPath = "comment/addComment";
 const findAllImageCategoryPath = "imageCategory/findAllImageCategory";
+const findAllImagesByCategoryPath = "image/postImageListByCategoryId";
 
 /**
  * 当后端接口地址无法请求时,使用全局配置的静态图片路径,避免页面中元素空白
@@ -97,6 +100,14 @@ const categoryList = [
     {"imageCategoryCode":"amusement","imageCategoryId":5,"imageCategoryName":"娱乐1"},
     {"imageCategoryCode":"technology","imageCategoryId":6,"imageCategoryName":"科技1"}
 ];
+const imageList = [
+    {"imageCategoryId":3,"imageContent":"推荐信息测试啊","imageId":3,"imageName":"tuijian.jpg","imagePath":"http://localhost:3000/images/tuijian.jpg","imageTitle":"推荐信息测试啊"},
+    {"imageCategoryId":4,"imageContent":"热点信息图片","imageId":4,"imageName":"redian.jpg","imagePath":"http://localhost:3000/images/redian.jpg","imageTitle":"热点信息图片"},
+    {"imageCategoryId":5,"imageContent":"北京天安门","imageId":5,"imageName":"beijing.jpg","imagePath":"http://localhost:3000/images/beijing.jpg","imageTitle":"北京天安门"},
+    {"imageCategoryId":6,"imageContent":"社会主义价值观","imageId":6,"imageName":"shehui.jpg","imagePath":"http://localhost:3000/images/shehui.jpg","imageTitle":"社会主义价值观"},
+    {"imageCategoryId":7,"imageContent":"随便找的明星照片","imageId":7,"imageName":"yule.jpg","imagePath":"http://localhost:3000/images/yule.jpg","imageTitle":"随便找的明星照片"},
+    {"imageCategoryId":8,"imageContent":"科技图片","imageId":8,"imageName":"keji.jpg","imagePath":"http://localhost:3000/images/redian.jpg","imageTitle":"科技图片"}
+];
 /***
  * 暴露出全局定义的方法和属性
  */
@@ -121,6 +132,8 @@ export default {
     noMoreDataText,
     inputCanNotEmpty,
     categoryList,
-    findAllImageCategoryPath
+    findAllImageCategoryPath,
+    imageList,
+    findAllImagesByCategoryPath
 }
 </script>
