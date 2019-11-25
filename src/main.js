@@ -29,6 +29,10 @@ import global from './Common.vue';
 import { Tab, Tabs,Lazyload,Panel,NavBar } from 'vant';
 //导入vant组件样式
 import 'vant/lib/index.css';
+/***
+ * vue-preview缩略图组件
+ */
+import VuePreview from 'vue-preview'
 
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
@@ -39,7 +43,16 @@ Vue.use(vueResource);
 Vue.use(Tab).use(Tabs).use(Lazyload,{
     lazyComponent: true
 }).use(Panel).use(NavBar);
-
+Vue.use(VuePreview, {
+    mainClass: 'pswp--minimal--dark',
+    barsSize: {top: 0, bottom: 0},
+    captionEl: false,
+    fullscreenEl: false,
+    shareEl: false,
+    bgOpacity: 0.85,
+    tapToClose: true,
+    tapToToggleControls: false
+  });
 
 /**设置Vue-Router全局属性,必须要在Vue.use(vueResource);后面才行*/
 Vue.http.options.emulateJSON = false;

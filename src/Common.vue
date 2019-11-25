@@ -71,6 +71,7 @@ const getImageInfoPath = "image/getImageById";
  * newsDetail新闻详情数据返回格式
  * commentList评论列表数据返回格式
  * categoryList图片分享的类别列表数据返回格式
+ * slide1缩略图数据返回格式
  */
 const lunboList = [
     {imageId:1,imagePath:"images/1.jpg",imageTitle:"轮播图-1.jpg"},
@@ -110,6 +111,17 @@ const imageList = [
     {"imageCategoryId":7,"imageContent":"随便找的明星照片","imageId":7,"imageName":"yule.jpg","imagePath":"http://localhost:3000/images/yule.jpg","imageTitle":"随便找的明星照片"},
     {"imageCategoryId":8,"imageContent":"科技图片","imageId":8,"imageName":"keji.jpg","imagePath":"http://localhost:3000/images/redian.jpg","imageTitle":"科技图片"}
 ];
+
+const slide1 = [
+                {
+                    src: 'https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_b.jpg',
+                    msrc: 'https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg',
+                    alt: 'picture1',
+                    title: 'Image Caption 1',
+                    w: 600,
+                    h: 400
+                }
+            ];
 /***
  * 暴露出全局定义的方法和属性
  */
@@ -137,6 +149,7 @@ export default {
     findAllImageCategoryPath,
     imageList,
     findAllImagesByCategoryPath,
-    getImageInfoPath
+    getImageInfoPath,
+    slide1
 }
 </script>

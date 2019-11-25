@@ -1,8 +1,14 @@
 <template>
     <div class="app-container">
         <!--顶部Header区域-->
-        <mt-header fixed :title="currentProjectHeaderTitle"></mt-header>
-        <!--<van-nav-bar  :title="currentProjectHeaderTitle" left-text="返回" left-arrow  @click-left="onClickLeft"/>-->
+        <mt-header fixed :title="currentProjectHeaderTitle">
+           <!--
+            <router-link :to="this.$route.path" slot="left">
+                返回
+            </router-link>
+            -->
+        </mt-header>
+        <!--<van-nav-bar  title="标题"  left-text="返回"  left-arrow  @click-left="onClickLeft"/>-->
         <!--中间的路由route-view区域-->
         <transition>
             <router-view></router-view>
