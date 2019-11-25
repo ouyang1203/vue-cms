@@ -9,15 +9,17 @@
         
             <div class="img-display-zone"> 
                 <div class="img-display-div" v-for="img in imageList" :key="img.imageId">
-                    <img v-lazy="img.imagePath" >
-                    <div class="info">
-                        <h1 class="info-title">
-                            {{img.imageTitle}}
-                        </h1>
-                        <div class="info-body">
-                            {{img.imageContent}}
+                    <router-link :to="'/home/photoInfo/'+img.imageId">
+                        <img v-lazy="img.imagePath" >
+                        <div class="info">
+                            <h1 class="info-title">
+                                {{img.imageTitle}}
+                            </h1>
+                            <div class="info-body">
+                                {{img.imageContent}}
+                            </div>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
         

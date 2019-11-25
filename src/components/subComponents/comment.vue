@@ -38,8 +38,8 @@ export default {
     },
     methods:{
         initComments(way){
-            //this.id是父组件传递过来的
-            var json = {commentModuleId:this.id,pageIndex:this.pageIndex,pageSize:this.pageSize}
+            //this.id,this.module是父组件传递过来的,需要使用这两个参数来区分不同模块的评论数据,避免加载错误数据
+            var json = {commentModuleId:this.id,commentModule:this.module,pageIndex:this.pageIndex,pageSize:this.pageSize}
             this.$http.post(this.GLOBAL.commentFindCommentsPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){

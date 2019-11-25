@@ -10,6 +10,7 @@ import Search from './components/tabbar/SearchContainer.vue';
 import NewsList from './components/news/NewsList.vue';
 import NewsDetail from './components/news/NewsDetail.vue';
 import PhotoList from './components/photos/PhotoList.vue';
+import PhotoInfo from './components/photos/photoInfo.vue';
 
 var router = new VueRouter({
     routes:[//配置路由规则
@@ -20,7 +21,8 @@ var router = new VueRouter({
         {path:'/search',component:Search},
         {path:'/home/newList',component:NewsList},
         {path:'/home/newsDetail/:id',component:NewsDetail},
-        {path:'/home/photoList',component:PhotoList}
+        {path:'/home/photoList',component:PhotoList},
+        {path:'/home/photoInfo/:id',component:PhotoInfo}
 
     ],
     linkActiveClass:"mui-active"//覆盖默认的路由高亮类为MUI提供的mui-active样式(默认的高亮类是：router-link-active)

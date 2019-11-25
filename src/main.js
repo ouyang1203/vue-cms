@@ -26,11 +26,9 @@ import router from './router.js';
 //导入全局变量文件
 import global from './Common.vue';
 //导入vant组件替换MUI的滑动组件
-import { Tab, Tabs,Lazyload } from 'vant';
+import { Tab, Tabs,Lazyload,Panel,NavBar } from 'vant';
 //导入vant组件样式
-import 'vant/lib/tab/style';
-import 'vant/lib/tabs/style';
-import 'vant/lib/Lazyload/style';
+import 'vant/lib/index.css';
 
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
@@ -40,7 +38,7 @@ Vue.use(VueRouter);
 Vue.use(vueResource);
 Vue.use(Tab).use(Tabs).use(Lazyload,{
     lazyComponent: true
-});
+}).use(Panel).use(NavBar);
 
 
 /**设置Vue-Router全局属性,必须要在Vue.use(vueResource);后面才行*/

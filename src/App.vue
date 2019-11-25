@@ -2,6 +2,7 @@
     <div class="app-container">
         <!--顶部Header区域-->
         <mt-header fixed :title="currentProjectHeaderTitle"></mt-header>
+        <!--<van-nav-bar  :title="currentProjectHeaderTitle" left-text="返回" left-arrow  @click-left="onClickLeft"/>-->
         <!--中间的路由route-view区域-->
         <transition>
             <router-view></router-view>
@@ -45,6 +46,15 @@
     //避免route-view区域最后一条数据被底部Tabber遮挡
     padding-bottom: 50px;
     overflow-x: hidden;
+    /***替换vant导航默认样式 */
+    .van-nav-bar{
+        top: 0;
+        right: 0;
+        left: 0;
+        position: fixed;
+        z-index: 1;
+        background-color: #26a2ff;
+    }
 }
 /**设置模块切换动画效果*/
 .v-enter{
@@ -60,4 +70,6 @@
 .v-leave-active{
     transition: all 0.5s ease;
 }
+
+
 </style>
