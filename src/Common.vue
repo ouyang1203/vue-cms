@@ -104,12 +104,12 @@ const categoryList = [
     {"imageCategoryCode":"technology","imageCategoryId":6,"imageCategoryName":"科技1"}
 ];
 const imageList = [
-    {"imageCategoryId":3,"imageContent":"推荐信息测试啊","imageId":3,"imageName":"tuijian.jpg","imagePath":"http://localhost:3000/images/tuijian.jpg","imageTitle":"推荐信息测试啊"},
-    {"imageCategoryId":4,"imageContent":"热点信息图片","imageId":4,"imageName":"redian.jpg","imagePath":"http://localhost:3000/images/redian.jpg","imageTitle":"热点信息图片"},
-    {"imageCategoryId":5,"imageContent":"北京天安门","imageId":5,"imageName":"beijing.jpg","imagePath":"http://localhost:3000/images/beijing.jpg","imageTitle":"北京天安门"},
-    {"imageCategoryId":6,"imageContent":"社会主义价值观","imageId":6,"imageName":"shehui.jpg","imagePath":"http://localhost:3000/images/shehui.jpg","imageTitle":"社会主义价值观"},
-    {"imageCategoryId":7,"imageContent":"随便找的明星照片","imageId":7,"imageName":"yule.jpg","imagePath":"http://localhost:3000/images/yule.jpg","imageTitle":"随便找的明星照片"},
-    {"imageCategoryId":8,"imageContent":"科技图片","imageId":8,"imageName":"keji.jpg","imagePath":"http://localhost:3000/images/redian.jpg","imageTitle":"科技图片"}
+    {"imageCategoryId":3,"imageContent":"推荐信息测试啊","imageId":3,"imageName":"tuijian.jpg","imagePath":"http://192.168.1.3:3000/images/tuijian.jpg","imageTitle":"推荐信息测试啊"},
+    {"imageCategoryId":4,"imageContent":"热点信息图片","imageId":4,"imageName":"redian.jpg","imagePath":"http://192.168.1.3:3000/images/redian.jpg","imageTitle":"热点信息图片"},
+    {"imageCategoryId":5,"imageContent":"北京天安门","imageId":5,"imageName":"beijing.jpg","imagePath":"http://192.168.1.3:3000/images/beijing.jpg","imageTitle":"北京天安门"},
+    {"imageCategoryId":6,"imageContent":"社会主义价值观","imageId":6,"imageName":"shehui.jpg","imagePath":"http://192.168.1.3:3000/images/shehui.jpg","imageTitle":"社会主义价值观"},
+    {"imageCategoryId":7,"imageContent":"随便找的明星照片","imageId":7,"imageName":"yule.jpg","imagePath":"http://192.168.1.3:3000/images/yule.jpg","imageTitle":"随便找的明星照片"},
+    {"imageCategoryId":8,"imageContent":"科技图片","imageId":8,"imageName":"keji.jpg","imagePath":"http://192.168.1.3:3000/images/redian.jpg","imageTitle":"科技图片"}
 ];
 
 const slide1 = [

@@ -60,10 +60,9 @@ Vue.http.options.crossOrigin = true;
 Vue.http.options.emulateHTTP = true;
 /**
  * 设置全局访问根节点
- * 本地开发时可以使用http://localhost:8080
- * 局域网内手机访问需要使用nginx代理一下修改为http://192.168.1.3/
+ * 修改为调试模式，手机和电脑都能正常访问,在package.json的dev中新增--host 192.168.1.3 重启服务即可
  *  */
-Vue.http.options.root='http://localhost:8080';
+Vue.http.options.root='http://192.168.1.3:8080';
 Vue.prototype.GLOBAL = global
 
 //时间格式化filter
