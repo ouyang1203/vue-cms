@@ -3,7 +3,7 @@
         <!--顶部Header区域-->
         <mt-header fixed :title="currentProjectHeaderTitle">
            <!--
-            <router-link :to="this.$route.path" slot="left">
+            <router-link :to="this.$route.path" slot="left" tag="span" style="display:none;" :class="{'showBackBtn':showBackFlag}">
                 返回
             </router-link>
             -->
@@ -40,7 +40,8 @@
     export default{
         data(){
             return {
-                currentProjectHeaderTitle:this.GLOBAL.currentProjectHeaderTitle
+                currentProjectHeaderTitle:this.GLOBAL.currentProjectHeaderTitle,
+                showBackFlag:false
             }
         }
     }
@@ -76,6 +77,5 @@
 .v-leave-active{
     transition: all 0.5s ease;
 }
-
 
 </style>

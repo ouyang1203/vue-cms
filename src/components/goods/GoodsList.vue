@@ -1,79 +1,68 @@
 <template>
     <div class="goodsList">
-        <div class="goodsItem">
-            <img src="http://192.168.1.3:3000/images/goods/iphoneX.webp" alt="">
-            <h1 class="title">【分期免息】Apple/苹果 iPhone X 苹果x手机国行iphonex全网通4G</h1>
+        <router-link class="goodsItem" v-for="item in goodsBasicInfoList" :key="item.goodsId"
+         :to="'/home/goodeInfo/'+item.goodsId" tag="div">
+            <img :src="item.goodsImagePath">
+            <h1 class="title" v-text="item.goodsTitle"></h1>
             <div class="info">
                 <p class="price">
-                    <span class="now">￥3650.00</span>
-                    <span class="old">￥4000.00</span>
+                    <span class="now">￥{{item.goodsSellPrice}}</span>
+                    <span class="old">￥{{item.goodsMarketPrice}}</span>
                 </p>
                 <p class="sell">
                     <span class="status">热卖中</span>
-                    <span class="status">剩余60件</span>
+                    <span class="status">剩余{{item.goodsStockQuantity}}件</span>
                 </p>
             </div>
-        </div>
-        <div class="goodsItem">
-            <img src="http://192.168.1.3:3000/images/goods/huaweiMate30Pro.webp" alt="">
-            <h1 class="title">【12期免息】Huawei/华为Mate 30 Pro 5G麒麟990徕卡四摄5G芯片智能手机</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥6899.00</span>
-                    <span class="old">￥7000.00</span>
-                </p>
-                <p class="sell">
-                    <span class="status">热卖中</span>
-                    <span class="status">剩余30件</span>
-                </p>
-            </div>
-        </div>
-        <div class="goodsItem">
-            <img src="http://192.168.1.3:3000/images/goods/iphoneX.webp" alt="">
-            <h1 class="title">【分期免息】Apple/苹果 iPhone X 苹果x手机国行iphonex全网通4G</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥3650.00</span>
-                    <span class="old">￥4000.00</span>
-                </p>
-                <p class="sell">
-                    <span class="status">热卖中</span>
-                    <span class="status">剩余60件</span>
-                </p>
-            </div>
-        </div>
-        <div class="goodsItem">
-            <img src="http://192.168.1.3:3000/images/goods/huaweiMate30Pro.webp" alt="">
-            <h1 class="title">【12期免息】Huawei/华为Mate 30 Pro 5G麒麟990徕卡四摄5G芯片智能手机</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥6899.00</span>
-                    <span class="old">￥7000.00</span>
-                </p>
-                <p class="sell">
-                    <span class="status">热卖中</span>
-                    <span class="status">剩余30件</span>
-                </p>
-            </div>
-        </div>
-        <div class="goodsItem">
-            <img src="http://192.168.1.3:3000/images/goods/iphoneX.webp" alt="">
-            <h1 class="title">【分期免息】Apple/苹果 iPhone X 苹果x手机国行iphonex全网通4G</h1>
-            <div class="info">
-                <p class="price">
-                    <span class="now">￥3650.00</span>
-                    <span class="old">￥4000.00</span>
-                </p>
-                <p class="sell">
-                    <span class="status">热卖中</span>
-                    <span class="status">剩余60件</span>
-                </p>
-            </div>
-        </div>
+        </router-link>
+        <mt-button type="danger" size="large" plain @click="getMoreGoods">
+            {{pageHaveNextFlag?loadMoreCommentText:noMoreDataText}}
+        </mt-button>
     </div>
 </template>
 <script>
 export default {
+    data(){
+        return {
+            goodsBasicInfoList:this.GLOBAL.goodsBasicInfoList,
+            pageHaveNextFlag:true,
+            loadMoreCommentText:this.GLOBAL.loadMoreCommentText,//加载更多数据的按钮文字
+            noMoreDataText:this.GLOBAL.noMoreDataText,//没有更多数据可供加载时将页面按钮文字替换掉
+            pageIndex:1,
+            pageSize:this.GLOBAL.globalPageSize
+        }
+    },
+    created(){
+        this.initGoodsBasicInfoList('init');
+    },
+    methods:{
+        initGoodsBasicInfoList(way){
+            var json = {goodsEnableFlag:'Y',pageIndex:this.pageIndex,pageSize:this.pageSize};
+            this.$http.post(this.GLOBAL.goodsBasicInfoListPath,json).then(function(result){
+                var body = result.body;
+                if(body.status===0){
+                    //获取后端接口返回的商品数据
+                    if(way==='init'){
+                        this.goodsBasicInfoList = body.list;
+                    }else{
+                        this.goodsBasicInfoList = this.goodsBasicInfoList.concat(body.list);
+                    }
+                    if(this.pageIndex===body.totalPage){
+                        //当前页大小和总页数大小一致时不允许再次点击加载更多按钮
+                        this.pageHaveNextFlag = false;
+                    }
+                }else{
+                    this.GLOBAL.error(body.statusText,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
+                }
+            },function(error){
+                this.GLOBAL.error(this.GLOBAL.overTimeErrorMessage,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
+            });
+        },
+        getMoreGoods(){
+            this.pageIndex++;
+            this.initGoodsBasicInfoList('load');
+        }
+    }
     
 }
 </script>

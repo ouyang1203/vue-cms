@@ -1,11 +1,7 @@
 <template>
     <div>
-        <!--轮播图组件-->
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="item in lunboList" :key="item.imageId">
-                <img :src="item.imagePath" :title="item.imageTitle">
-            </mt-swipe-item>
-        </mt-swipe>
+        <!--swiper组件抽离-->
+        <swiper :list="lunboList" :isFull="true"></swiper>
         <div class="mui-content myDiv">
             <ul class="mui-table-view mui-grid-view mui-grid-9">
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -49,6 +45,10 @@
     </div>
 </template>
 <script>
+/**
+ * 抽离公共的轮播图组件
+*/
+import swiper from '../subComponents/swiper.vue';
 export default {
     data(){
         return {
@@ -61,7 +61,7 @@ export default {
     },
     methods:{
         getLunbo(){//获取轮播图数据的方法
-            var json = {imageCategoryId:2};
+            var json = {imageCategoryId:2,imageCategoryObjectId:-1,imageCategoryShowFlag:'N'};
             this.$http.post(this.GLOBAL.homePageLunBoPath,json).then(function(result){
                 var body = result.body;
                 if(body.status===0){
@@ -74,20 +74,13 @@ export default {
                this.GLOBAL.error(this.GLOBAL.overTimeErrorMessage,this.GLOBAL.errorToastPosition,this.GLOBAL.errorToastDuration);
             });
         }
+    },
+    components:{
+        swiper
     }
 }
 </script>
 <style lang="scss" scoped>
-.mint-swipe{
-    height: 200px;
-}
-.mint-swipe-item{
-    img{
-        //设置轮播图的样式
-        width: 100%;
-        height:100%;
-    }
-}
 /**替换原生样式*/
 .mui-grid-view.mui-grid-9{
     background-color:#fff;

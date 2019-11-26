@@ -57,9 +57,9 @@ export default {
             });
         },
         initImageList(categoryId){
-            var json = {imageCategoryId:this.categoryId};
+            var json = {imageCategoryId:this.categoryId,imageCategoryShowFlag:'Y'};
             if(this.categoryId===1){
-                json = {};
+                json = {imageCategoryShowFlag:'Y'};
             }
             //加载指定分类下所有图片的列表
             this.$http.post(this.GLOBAL.findAllImagesByCategoryPath,json).then(function(result){

@@ -50,6 +50,7 @@ const inputCanNotEmpty = '输入内容不能为空';
  * findAllImageCategoryPath查询图片分类列表后台地址
  * findAllImagesByCategoryPath 查询分类下所有图片列表后台地址
  * getImageInfoPath 查询图片明细后台地址
+ * goodsBasicInfoListPath 查询商品列表后台地址
  */
 const homePageLunBoPath = 'image/postImageListByCategoryId';
 const newsListGetAllNewsPath = 'news/getAllNews';
@@ -59,6 +60,7 @@ const commentAddCommentPath = "comment/addComment";
 const findAllImageCategoryPath = "imageCategory/findAllImageCategory";
 const findAllImagesByCategoryPath = "image/postImageListByCategoryId";
 const getImageInfoPath = "image/getImageById";
+const goodsBasicInfoListPath = "goodsBasic/findGoodsBasicInfoList";
 
 /**
  * 当后端接口地址无法请求时,使用全局配置的静态图片路径,避免页面中元素空白
@@ -114,14 +116,18 @@ const imageList = [
 
 const slide1 = [
                 {
-                    src: 'https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_b.jpg',
-                    msrc: 'https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg',
+                    src: 'http://192.168.1.3:3000/images/slide/15008867125_68a8ed88cc_b.jpg',
+                    msrc: 'http://192.168.1.3:3000/images/slide/15008867125_68a8ed88cc_m.jpg',
                     alt: 'picture1',
                     title: 'Image Caption 1',
                     w: 600,
                     h: 400
                 }
             ];
+const goodsBasicInfoList = [
+    {goodsId:1,goodsTitle:'【分期免息】Apple/苹果 iPhone X 苹果x手机国行iphonex全网通4G',goodsSellPrice:3650.00,goodsMarketPrice:4000.00,goodsStockQuantity:60,goodsImagePath:'http://192.168.1.3:3000/images/goods/cellphone/iphoneX.webp'},
+    {goodsId:1,goodsTitle:'【12期免息】Huawei/华为Mate 30 Pro 5G麒麟990徕卡四摄5G芯片智能手机',goodsSellPrice:6899.00,goodsMarketPrice:7000.00,goodsStockQuantity:30,goodsImagePath:'http://192.168.1.3:3000/images/goods/cellphone/huaweiMate30Pro.webp'}
+];
 /***
  * 暴露出全局定义的方法和属性
  */
@@ -150,6 +156,8 @@ export default {
     imageList,
     findAllImagesByCategoryPath,
     getImageInfoPath,
-    slide1
+    slide1,
+    goodsBasicInfoListPath,
+    goodsBasicInfoList
 }
 </script>
