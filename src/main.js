@@ -26,7 +26,7 @@ import router from './router.js';
 //导入全局变量文件
 import global from './Common.vue';
 //导入vant组件替换MUI的滑动组件
-import { Tab, Tabs,Lazyload,Panel,NavBar } from 'vant';
+import { Tab, Tabs,Lazyload,Panel,NavBar,Stepper } from 'vant';
 //导入vant组件样式
 import 'vant/lib/index.css';
 /***
@@ -42,7 +42,7 @@ Vue.use(VueRouter);
 Vue.use(vueResource);
 Vue.use(Tab).use(Tabs).use(Lazyload,{
     lazyComponent: true
-}).use(Panel).use(NavBar);
+}).use(Panel).use(NavBar).use(Stepper);
 Vue.use(VuePreview, {
     mainClass: 'pswp--minimal--dark',
     barsSize: {top: 0, bottom: 0},
