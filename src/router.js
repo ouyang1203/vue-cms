@@ -13,6 +13,8 @@ import PhotoList from './components/photos/PhotoList.vue';
 import PhotoInfo from './components/photos/photoInfo.vue';
 import GoodsList from './components/goods/GoodsList.vue';
 import GoodsInfo from './components/goods/GoodsInfo.vue';
+import GoodsDesc from './components/goods/GoodsDesc.vue';
+import GoodsComments from './components/goods/GoodsComments.vue';
 
 var router = new VueRouter({
     routes:[//配置路由规则
@@ -26,7 +28,9 @@ var router = new VueRouter({
         {path:'/home/photoList',component:PhotoList},
         {path:'/home/photoInfo/:id',component:PhotoInfo},
         {path:'/home/shoppingMail',component:GoodsList},
-        {path:'/home/goodeInfo/:id',component:GoodsInfo}
+        {path:'/home/goodeInfo/:id',component:GoodsInfo},
+        {path:'/home/goodsdesc/:id',component:GoodsDesc,name:'goodsdesc'},
+        {path:'/home/goodscomments/:id',component:GoodsComments,name:'goodscomments'}  
     ],
     linkActiveClass:"mui-active"//覆盖默认的路由高亮类为MUI提供的mui-active样式(默认的高亮类是：router-link-active)
 });
