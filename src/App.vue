@@ -2,13 +2,10 @@
     <div class="app-container">
         <!--顶部Header区域-->
         <mt-header fixed :title="currentProjectHeaderTitle">
-           <!--
-            <router-link :to="this.$route.path" slot="left" tag="span" style="display:none;" :class="{'showBackBtn':showBackFlag}">
-                返回
+            <router-link to="/" slot="left">
+            <mt-button icon="back" @click="back" v-show="showBackFlag">返回</mt-button>
             </router-link>
-            -->
         </mt-header>
-        <!--<van-nav-bar  title="标题"  left-text="返回"  left-arrow  @click-left="onClickLeft"/>-->
         <!--中间的路由route-view区域-->
         <transition>
             <router-view></router-view>
@@ -41,7 +38,22 @@
         data(){
             return {
                 currentProjectHeaderTitle:this.GLOBAL.currentProjectHeaderTitle,
-                showBackFlag:false
+                showBackFlag:false,
+                backPath:'/home'
+            }
+        },
+        methods:{
+            back(){
+                this.$router.go(-1);
+            }
+        },
+        watch:{
+            '$route.path':function(newVal,oldVal){
+                if(newVal!='/home'){
+                    this.showBackFlag = true;
+                }else{
+                    this.showBackFlag = false;
+                }
             }
         }
     }
@@ -53,15 +65,6 @@
     //避免route-view区域最后一条数据被底部Tabber遮挡
     padding-bottom: 50px;
     overflow-x: hidden;
-    /***替换vant导航默认样式 */
-    .van-nav-bar{
-        top: 0;
-        right: 0;
-        left: 0;
-        position: fixed;
-        z-index: 1;
-        background-color: #26a2ff;
-    }
 }
 /**设置模块切换动画效果*/
 .v-enter{
