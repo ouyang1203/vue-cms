@@ -126,8 +126,7 @@ export default {
             var left = shopCarBadgePosition.left-ballPosition.left;
             var height = shopCarBadgePosition.top-ballPosition.top;
             el.style.transform = "translate("+left+"px,"+height+"px)";
-            el.style.transition = "all 1s cubic-bezier(.28,.62,.9,.81)";
-            //cubic-bezier(.4,-0.3,1,,68)
+            el.style.transition = "all 0.8s cubic-bezier(.4,-0.3,1,.68)";
             done();
         },
         afterEnter(el){
