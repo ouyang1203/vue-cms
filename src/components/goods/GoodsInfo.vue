@@ -24,7 +24,7 @@
                         销售价：<span class="new_price">￥{{goodsItem.goodsSellPrice}}</span>
                     </p>
                     <p class="buy_amount">
-                        <span v-text="'购买数量：'"></span><numbox></numbox>
+                        <span v-text="'购买数量：'"></span><numbox @func="getSelectedGoodsNumber" :maxNumber="goodsItem.goodsStockQuantity"></numbox>
                     </p>
                     <p class="goods-info-btn">
                         <mt-button type="primary" size="small">立即购买</mt-button>
@@ -65,12 +65,15 @@ export default {
             lunboList:this.GLOBAL.lunboList,
             goodsItem:{},
             module:'goods',//指定当前业务模块
-            ballFlag:false//控制小球隐藏和显示的标识
+            ballFlag:false,//控制小球隐藏和显示的标识
+            selectedCount:1//保存用户选中的商品数量，默认值为：1
         }
     },
-    created(){
-        this.getLunbo();
+    mounted(){
         this.initGoosInfo();
+    },
+    created(){
+        this.getLunbo(); 
     },
     methods:{
         getLunbo(){//获取轮播图数据的方法
@@ -88,6 +91,7 @@ export default {
             });
         },
         initGoosInfo(){
+            //加载商品信息需要在加载到内存的时候就调用，否则无法将库存量子组件。
             var url = this.GLOBAL.findGoodsBasicInfoById+"/"+this.id;
             this.$http.get(url).then(function(result){
                 var body = result.body;
@@ -131,6 +135,11 @@ export default {
         },
         afterEnter(el){
             this.ballFlag = !this.ballFlag;
+        },
+        getSelectedGoodsNumber(count){
+            //获取本次购买的商品数量，需要从numbox中调用这个方法把对应值回传
+            this.selectedCount = count;
+            console.log("商品明细页面获取的购买数量："+this.selectedCount);
         }
     },
     components:{
