@@ -52,6 +52,7 @@ const inputCanNotEmpty = '输入内容不能为空';
  * getImageInfoPath 查询图片明细后台地址
  * goodsBasicInfoListPath 查询商品列表后台地址
  * findGoodsBasicInfoById 查询商品明细后台地址
+ * findGoodsDetailById 商品图文介绍后台地址
  */
 const homePageLunBoPath = 'image/postImageListByCategoryId';
 const newsListGetAllNewsPath = 'news/getAllNews';
@@ -63,6 +64,7 @@ const findAllImagesByCategoryPath = "image/postImageListByCategoryId";
 const getImageInfoPath = "image/getImageById";
 const goodsBasicInfoListPath = "goodsBasic/findGoodsBasicInfoList";
 const findGoodsBasicInfoById = "goodsBasic/findGoodsBasicInfoById";
+const findGoodsDetailById = "goodsDetail/findGoodsDetailById";
 
 /**
  * 当后端接口地址无法请求时,使用全局配置的静态图片路径,避免页面中元素空白
@@ -161,6 +163,7 @@ export default {
     slide1,
     goodsBasicInfoListPath,
     goodsBasicInfoList,
-    findGoodsBasicInfoById
+    findGoodsBasicInfoById,
+    findGoodsDetailById
 }
 </script>

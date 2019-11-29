@@ -1,5 +1,11 @@
 <template>
     <div class="goodsinfo-container">
+        <transition 
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter">
+            <div class="ball" v-show="ballFlag" ref="ball"></div>
+        </transition>
         <!--商品轮播图区域-->
         <div class="mui-card">
             <div class="mui-card-content">
@@ -22,7 +28,7 @@
                     </p>
                     <p class="goods-info-btn">
                         <mt-button type="primary" size="small">立即购买</mt-button>
-                        <mt-button type="danger" size="small">加入购物车</mt-button>
+                        <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
                     </p>
                 </div>
             </div>
@@ -59,6 +65,7 @@ export default {
             lunboList:this.GLOBAL.lunboList,
             goodsItem:{},
             module:'goods',//指定当前业务模块
+            ballFlag:false//控制小球隐藏和显示的标识
         }
     },
     created(){
@@ -103,6 +110,28 @@ export default {
             var goodsId = this.id;
             //获取商品评论(编程式导航)
             this.$router.push({name:"goodscomments",params:{goodsId}});
+        },
+        addToShopCar(){
+            this.ballFlag = !this.ballFlag;
+        },
+        beforeEnter(el){
+            el.style.transform = "translate(0,0)";
+        },
+        enter(el,done){
+            el.offsetWidth;
+            //获取小球的初始位置
+            var ballPosition = this.$refs.ball.getBoundingClientRect();
+            //使用DOM操作获取shopCarBadge徽标在页面中的位置
+            var shopCarBadgePosition = document.getElementById("shopCarBadge").getBoundingClientRect();
+            var left = shopCarBadgePosition.left-ballPosition.left;
+            var height = shopCarBadgePosition.top-ballPosition.top;
+            el.style.transform = "translate("+left+"px,"+height+"px)";
+            el.style.transition = "all 1s cubic-bezier(.28,.62,.9,.81)";
+            //cubic-bezier(.4,-0.3,1,,68)
+            done();
+        },
+        afterEnter(el){
+            this.ballFlag = !this.ballFlag;
         }
     },
     components:{
@@ -115,6 +144,19 @@ export default {
 .goodsinfo-container{
     background-color: #eee;
     overflow: hidden;
+    .ball{
+        width: 15px;
+        height: 15px;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        background-color: red;
+        position:absolute;
+        z-index:99;
+        top:395px;
+        left:142px;
+    }
     .new_price{
         color: red;
         font-size: 16px;

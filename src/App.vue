@@ -3,7 +3,7 @@
         <!--顶部Header区域-->
         <mt-header fixed :title="currentProjectHeaderTitle">
             <router-link to="/" slot="left">
-            <mt-button icon="back" @click="back" v-show="showBackFlag">返回</mt-button>
+                <mt-button icon="back" @click="back" v-show="showBackFlag">返回</mt-button>
             </router-link>
         </mt-header>
         <!--中间的路由route-view区域-->
@@ -22,7 +22,7 @@
 			</router-link>
 			<router-link class="mui-tab-item" to="/shop">
 				<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-                    <span class="mui-badge">0</span>
+                    <span class="mui-badge" id="shopCarBadge">0</span>
                 </span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>

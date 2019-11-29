@@ -36,7 +36,7 @@ var router = new VueRouter({
 });
 //修正Vue跳转到新页面，默认在底部而不是顶部
 router.afterEach((to, from, next) => {
-window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
 });
 
 /**暴露出路由属性 */

@@ -1,6 +1,8 @@
 <template>
-    <div>
-        商品详情
+    <div class="goodsdesc-container">
+        <h3 v-text="goodsDesc.goodsTitle"></h3>
+        <hr>
+        <div class="content" v-html="goodsDesc.goodsDetailInfo"></div>
     </div>
 </template>
 <script>
@@ -12,11 +14,11 @@ export default {
         }
     },
     created(){
-
+        this.initGoodsDesc();
     },
     methods:{
         initGoodsDesc(){
-            var url = this.GLOBAL.findGoodsBasicInfoById+"/"+this.id;
+            var url = this.GLOBAL.findGoodsDetailById+"/"+this.id;
             this.$http.get(url).then(function(result){
                 var body = result.body;
                 if(body.status===0){
@@ -32,6 +34,19 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-
+<style lang="scss">
+.goodsdesc-container{
+    padding: 4px;
+    h3{
+        font-size: 16px;
+        color: #226aff;
+        text-align: center;
+        margin: 15px 0;
+    }
+    .content{
+        img{
+            width:100%;
+        }
+    }
+}
 </style>
