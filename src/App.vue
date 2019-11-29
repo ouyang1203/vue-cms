@@ -49,7 +49,7 @@
         },
         watch:{
             '$route.path':function(newVal,oldVal){
-                if(newVal!='/home'){
+                if(newVal!='/home'&&newVal!='/member'&&newVal!='/shop'&&newVal!='/search'){
                     this.showBackFlag = true;
                 }else{
                     this.showBackFlag = false;

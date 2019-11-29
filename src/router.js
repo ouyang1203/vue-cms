@@ -34,6 +34,10 @@ var router = new VueRouter({
     ],
     linkActiveClass:"mui-active"//覆盖默认的路由高亮类为MUI提供的mui-active样式(默认的高亮类是：router-link-active)
 });
+//修正Vue跳转到新页面，默认在底部而不是顶部
+router.afterEach((to, from, next) => {
+window.scrollTo(0, 0)
+});
 
 /**暴露出路由属性 */
 export default router;
