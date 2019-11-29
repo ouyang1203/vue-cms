@@ -1,6 +1,6 @@
 <template>
-    <div class="number_box_container">
-        <van-stepper v-model="value" min="1" input-width="50px" button-size="32px" @change="stepperChange" :max="maxValue"/>
+    <div class="number_box_container" style="width:14px;margin:-14px">
+        <van-stepper v-model="value" min="1" input-width="50px" button-size="14px" @change="stepperChange"/>
     </div>
 </template>
 <script>

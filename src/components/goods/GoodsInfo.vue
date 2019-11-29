@@ -69,11 +69,9 @@ export default {
             selectedCount:1//保存用户选中的商品数量，默认值为：1
         }
     },
-    mounted(){
-        this.initGoosInfo();
-    },
     created(){
         this.getLunbo(); 
+        this.initGoosInfo();
     },
     methods:{
         getLunbo(){//获取轮播图数据的方法
@@ -91,7 +89,6 @@ export default {
             });
         },
         initGoosInfo(){
-            //加载商品信息需要在加载到内存的时候就调用，否则无法将库存量子组件。
             var url = this.GLOBAL.findGoodsBasicInfoById+"/"+this.id;
             this.$http.get(url).then(function(result){
                 var body = result.body;
@@ -117,6 +114,14 @@ export default {
         },
         addToShopCar(){
             this.ballFlag = !this.ballFlag;
+            //使用Vuex的store将用户选中的商品数量存储起来
+            var goodsCarInfo = {
+                goodsId:this.id,
+                goodsSelectedCount:this.selectedCount,
+                goodsPrice:this.goodsItem.goodsSellPrice,
+                goodsChooseFlag:false
+            };
+            this.$store.commit('addGoodsToCar',goodsCarInfo);
         },
         beforeEnter(el){
             el.style.transform = "translate(0,0)";
@@ -139,7 +144,6 @@ export default {
         getSelectedGoodsNumber(count){
             //获取本次购买的商品数量，需要从numbox中调用这个方法把对应值回传
             this.selectedCount = count;
-            console.log("商品明细页面获取的购买数量："+this.selectedCount);
         }
     },
     components:{

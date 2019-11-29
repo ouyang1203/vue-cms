@@ -23,3 +23,4 @@
  #### 4. 将注册子组件时候的注册名称，以标签的形式引入页面即可
 ### 11. 安装vant ui替换MUI的滑动组件 npm i vant -S
 ### 12. 手机调试应用需要在package.json的dev中新增--host 192.168.1.3（电脑IP）
+### 13. 安装Vuex插件用于存放各组件之间共享的数据 npm i vuex -S ，再到main.js中显示的引入vuex
