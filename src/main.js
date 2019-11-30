@@ -122,6 +122,9 @@ var store = new Vuex.Store({
          */
         getTotalGoodsNumber:function(state){
             return state.totalGoodsCount;
+        },
+        getGoodsList:function(state){
+            return state.goodsList;
         }
     }
 });
